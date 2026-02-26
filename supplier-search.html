@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Suppliers - Polymer World Location Search</title>
+    <meta name="description" content="Search for polymer suppliers by location. Find trusted suppliers near you with our advanced location-based search tool.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/supplier-search.css">
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img src="images/polymer-world-logo.png" alt="Polymer World" class="h-8 w-auto">
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="products.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Products</a>
+                        <a href="#" class="text-blue-600 font-semibold px-3 py-2 text-sm font-medium transition-colors">Find Suppliers</a>
+                        <a href="about.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-500 hover:text-blue-600">Home</a>
+                <a href="products.html" class="block px-3 py-2 text-base font-medium text-gray-500 hover:text-blue-600">Products</a>
+                <a href="#" class="block px-3 py-2 text-base font-medium text-blue-600 font-semibold">Find Suppliers</a>
+                <a href="about.html" class="block px-3 py-2 text-base font-medium text-gray-500 hover:text-blue-600">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-base font-medium text-gray-500 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                    Find Polymer Suppliers
+                    <span class="text-blue-600">by Location</span>
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                    Search for trusted polymer suppliers worldwide. Filter by location, product type, and supplier ratings to find the perfect match for your business needs.
+                </p>
+                
+                <!-- Search Controls -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-xl p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <!-- Location Search -->
+                            <div class="relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
+                                <div class="relative">
+                                    <input type="text" 
+                                           id="location-search" 
+                                           placeholder="Enter city, state, or country"
+                                           class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                                    <i class="fas fa-map-marker-alt absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Product Type -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Product Type</label>
+                                <select id="product-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                                    <option value="">All Products</option>
+                                    <option value="polyethylene">Polyethylene (PE)</option>
+                                    <option value="polypropylene">Polypropylene (PP)</option>
+                                    <option value="polystyrene">Polystyrene (PS)</option>
+                                    <option value="pvc">Polyvinyl Chloride (PVC)</option>
+                                    <option value="pet">Polyethylene Terephthalate (PET)</option>
+                                    <option value="biodegradable">Biodegradable Polymers</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Rating Filter -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Rating</label>
+                                <select id="rating-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200">
+                                    <option value="0">Any Rating</option>
+                                    <option value="4">4+ Stars</option>
+                                    <option value="4.5">4.5+ Stars</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button id="search-btn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                <i class="fas fa-search mr-2"></i>Search Suppliers
+                            </button>
+                            <button id="detect-location" class="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                <i class="fas fa-location-arrow mr-2"></i>Use My Location
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Results Header -->
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Search Results</h2>
+                    <p id="results-count" class="text-gray-600">Showing all suppliers</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="map-toggle" class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors">
+                        <i class="fas fa-map mr-2"></i>Show Map
+                    </button>
+                    <select id="sort-by" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500">
+                        <option value="distance">Sort by Distance</option>
+                        <option value="rating">Sort by Rating</option>
+                        <option value="name">Sort by Name</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Map Container (Initially Hidden) -->
+            <div id="map-container" class="hidden mb-8">
+                <div id="supplier-map" class="w-full h-96 rounded-lg shadow-lg"></div>
+            </div>
+
+            <!-- Suppliers Grid -->
+            <div id="suppliers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Supplier cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="hidden text-center py-12">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+                <p class="text-gray-600">Searching for suppliers...</p>
+            </div>
+
+            <!-- No Results State -->
+            <div id="no-results" class="hidden text-center py-12">
+                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-search text-gray-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">No suppliers found</h3>
+                <p class="text-gray-600 mb-4">Try adjusting your search criteria or location</p>
+                <button id="reset-search" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                    Reset Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Locations -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Popular Supplier Locations</h2>
+                <p class="text-xl text-gray-600">Discover suppliers in major polymer manufacturing hubs</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Houston, TX -->
+                <div class="location-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" data-location="Houston, TX">
+                    <div class="h-32 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                        <i class="fas fa-city text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Houston, TX</h3>
+                        <p class="text-gray-600 mb-4">Major petrochemical hub with 45+ suppliers</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">45 suppliers</span>
+                            <span class="text-blue-600 font-medium">View →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shanghai, China -->
+                <div class="location-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" data-location="Shanghai, China">
+                    <div class="h-32 bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+                        <i class="fas fa-building text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Shanghai, China</h3>
+                        <p class="text-gray-600 mb-4">Asia's largest polymer market with 120+ suppliers</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">120 suppliers</span>
+                            <span class="text-green-600 font-medium">View →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rotterdam, Netherlands -->
+                <div class="location-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" data-location="Rotterdam, Netherlands">
+                    <div class="h-32 bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                        <i class="fas fa-ship text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Rotterdam, Netherlands</h3>
+                        <p class="text-gray-600 mb-4">Europe's largest port with 38+ suppliers</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">38 suppliers</span>
+                            <span class="text-purple-600 font-medium">View →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mumbai, India -->
+                <div class="location-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer" data-location="Mumbai, India">
+                    <div class="h-32 bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center">
+                        <i class="fas fa-industry text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Mumbai, India</h3>
+                        <p class="text-gray-600 mb-4">India's chemical capital with 67+ suppliers</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-500">67 suppliers</span>
+                            <span class="text-orange-600 font-medium">View →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Polymer World</h3>
+                    <p class="text-gray-300 mb-4">
+                        Premium B2B marketplace for polymer products. Connecting suppliers and buyers worldwide.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="index.html#products" class="text-gray-300 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#" class="text-blue-400 font-semibold">Find Suppliers</a></li>
+                        <li><a href="index.html#about" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Supplier Search</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Product Sourcing</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Quality Assurance</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Logistics Support</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@onlypolymer.com</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Global Operations</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    © 2024 Polymer World. All rights reserved. | 
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a> | 
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/supplier-search.js"></script>
+</body>
+</html>
