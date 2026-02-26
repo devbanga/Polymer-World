@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Polymer World</title>
+    <meta name="description" content="Learn about Polymer World's mission to revolutionize the polymer industry through our premium B2B marketplace platform.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .team-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .value-card {
+            transition: all 0.3s ease;
+        }
+        .value-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img src="images/polymer-world-logo.png" alt="Polymer World" class="h-8 w-auto">
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="products.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Products</a>
+                        <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Suppliers</a>
+                        <a href="about.html" class="text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="signin.html" class="text-blue-600 hover:text-blue-700 px-3 py-2 text-sm font-medium">Sign In</a>
+                    <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Get Started</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="index.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="products.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Products</a>
+                    <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Suppliers</a>
+                    <a href="about.html" class="text-blue-600 block px-3 py-2 text-base font-medium">About</a>
+                    <a href="contact.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Contact</a>
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <a href="signin.html" class="text-blue-600 hover:text-blue-700 block px-3 py-2 text-base font-medium">Sign In</a>
+                        <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium inline-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">About Polymer World</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Revolutionizing the polymer industry through innovation, transparency, and global connectivity
+            </p>
+        </div>
+    </section>
+
+    <!-- Company Story -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Founded in 2020, Polymer World emerged from a simple observation: the polymer industry needed a modern, efficient marketplace that could connect buyers and sellers across the globe. What started as a small team with a big vision has grown into a leading B2B platform serving thousands of companies worldwide.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Our mission is to democratize access to premium polymer products while providing manufacturers and suppliers with the tools they need to succeed in an increasingly digital world. Through cutting-edge technology and deep industry expertise, we're transforming how business is done in the polymer industry.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8 mt-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">5,000+</h3>
+                            <p class="text-gray-600">Active Suppliers</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-600 mb-2">50,000+</h3>
+                            <p class="text-gray-600">Products Listed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-2xl p-8">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269e4e9844?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern office" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-lg">
+                            <i class="fas fa-bullseye text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 ml-4">Our Mission</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">
+                        To revolutionize the polymer industry by creating the world's most trusted and efficient B2B marketplace, connecting quality suppliers with global buyers through transparency, innovation, and exceptional service.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-100 p-3 rounded-lg">
+                            <i class="fas fa-eye text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 ml-4">Our Vision</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">
+                        To become the global standard for polymer commerce, where every business can easily access premium materials, build meaningful partnerships, and drive innovation in their respective industries.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Core Values</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">The principles that guide every decision we make</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="value-card bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 text-center">
+                    <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Trust & Transparency</h3>
+                    <p class="text-gray-600">We believe in open communication, honest pricing, and verified suppliers to build lasting partnerships.</p>
+                </div>
+                
+                <div class="value-card bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 text-center">
+                    <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-lightning-bolt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
+                    <p class="text-gray-600">We constantly innovate to provide cutting-edge solutions that simplify polymer commerce.</p>
+                </div>
+                
+                <div class="value-card bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-8 text-center">
+                    <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-users text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Customer First</h3>
+                    <p class="text-gray-600">Our customers are at the heart of everything we do. Their success is our success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Our Leadership Team</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Meet the experienced professionals leading our mission</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="team-card bg-white rounded-xl p-6 text-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="CEO" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Michael Chen</h3>
+                    <p class="text-blue-600 font-medium mb-3">Chief Executive Officer</p>
+                    <p class="text-gray-600 text-sm">20+ years in polymer industry with expertise in global supply chain management and digital transformation.</p>
+                    <div class="flex justify-center space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card bg-white rounded-xl p-6 text-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="CTO" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Sarah Johnson</h3>
+                    <p class="text-blue-600 font-medium mb-3">Chief Technology Officer</p>
+                    <p class="text-gray-600 text-sm">Technology leader with 15+ years building scalable B2B platforms and marketplace solutions.</p>
+                    <div class="flex justify-center space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-card bg-white rounded-xl p-6 text-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="COO" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">David Rodriguez</h3>
+                    <p class="text-blue-600 font-medium mb-3">Chief Operations Officer</p>
+                    <p class="text-gray-600 text-sm">Operations expert with extensive experience in logistics, quality control, and supplier relationships.</p>
+                    <div class="flex justify-center space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-blue-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">50K+</h3>
+                    <p class="text-blue-100">Active Users</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">5K+</h3>
+                    <p class="text-blue-100">Verified Suppliers</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">25+</h3>
+                    <p class="text-blue-100">Countries Served</p>
+                </div>
+                <div>
+                    <h3 class="text-4xl font-bold mb-2">99.9%</h3>
+                    <p class="text-blue-100">Uptime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Polymer World</h3>
+                    <p class="text-gray-400 mb-4">Your trusted B2B marketplace for premium polymer products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="hover:text-white">Products</a></li>
+                        <li><a href="supplier-search.html" class="hover:text-white">Suppliers</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>info@onlypolymer.com</li>
+                        <li><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>123 Business Ave, Suite 100</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Polymer World. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
