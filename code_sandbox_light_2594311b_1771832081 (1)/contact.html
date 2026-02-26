@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Polymer World</title>
+    <meta name="description" content="Get in touch with Polymer World. We're here to help with your polymer product needs and business inquiries.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .contact-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .submit-btn {
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .map-container {
+            background: linear-gradient(45deg, #f0f9ff, #e0f2fe);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img src="images/polymer-world-logo.png" alt="Polymer World" class="h-8 w-auto">
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="products.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Products</a>
+                        <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Suppliers</a>
+                        <a href="about.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="signin.html" class="text-blue-600 hover:text-blue-700 px-3 py-2 text-sm font-medium">Sign In</a>
+                    <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Get Started</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="index.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="products.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Products</a>
+                    <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Suppliers</a>
+                    <a href="about.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">About</a>
+                    <a href="contact.html" class="text-blue-600 block px-3 py-2 text-base font-medium">Contact</a>
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <a href="signin.html" class="text-blue-600 hover:text-blue-700 block px-3 py-2 text-base font-medium">Sign In</a>
+                        <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium inline-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                We're here to help with your polymer product needs. Reach out to our team for support, inquiries, or partnership opportunities.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Information Cards -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="contact-card bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 text-center">
+                    <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-phone text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Phone Support</h3>
+                    <p class="text-gray-600 mb-4">Speak with our support team directly</p>
+                    <p class="text-blue-600 font-semibold text-lg">+1 (555) 123-4567</p>
+                    <p class="text-sm text-gray-500 mt-2">Mon-Fri 9AM-6PM EST</p>
+                </div>
+                
+                <div class="contact-card bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 text-center">
+                    <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-envelope text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Email Support</h3>
+                    <p class="text-gray-600 mb-4">Send us your questions anytime</p>
+                    <p class="text-green-600 font-semibold">support@onlypolymer.com</p>
+                    <p class="text-sm text-gray-500 mt-2">Response within 24 hours</p>
+                </div>
+                
+                <div class="contact-card bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-8 text-center">
+                    <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Office Location</h3>
+                    <p class="text-gray-600 mb-4">Visit our headquarters</p>
+                    <p class="text-purple-600 font-semibold">123 Business Ave<br>Suite 100<br>New York, NY 10001</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Send Us a Message</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Fill out the form below and we'll get back to you within 24 hours</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <form id="contact-form" class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                        <input type="text" id="company" name="company" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                        <select id="subject" name="subject" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="sales">Sales Question</option>
+                            <option value="support">Technical Support</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="6" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="Please describe your inquiry..."></textarea>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="mr-3 text-blue-600">
+                            <span class="text-sm text-gray-600">I would like to receive updates and news from Polymer World</span>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn" class="submit-btn w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300">
+                        <span id="submit-text">Send Message</span>
+                        <span id="submit-loading" class="hidden">
+                            <i class="fas fa-spinner fa-spin mr-2"></i>Sending...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Find Us</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Visit our headquarters in the heart of New York City</p>
+            </div>
+            
+            <div class="map-container">
+                <i class="fas fa-map-marked-alt text-6xl text-blue-400 mb-4"></i>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Interactive Map</h3>
+                <p class="text-gray-600 mb-6">Our office is conveniently located in downtown Manhattan, easily accessible by public transportation.</p>
+                <div class="bg-white rounded-lg p-6 shadow-sm max-w-md mx-auto">
+                    <h4 class="font-bold text-gray-900 mb-2">Polymer World Headquarters</h4>
+                    <p class="text-gray-600 text-sm mb-2">123 Business Avenue, Suite 100</p>
+                    <p class="text-gray-600 text-sm mb-2">New York, NY 10001</p>
+                    <p class="text-gray-600 text-sm mb-4">United States</p>
+                    <a href="https://maps.google.com/?q=123+Business+Avenue,New+York,NY" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                        <i class="fas fa-external-link-alt mr-1"></i>Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Contact Options -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Need Immediate Help?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Choose the option that works best for you</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="contact-card bg-white rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-comments text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Live Chat</h3>
+                            <p class="text-gray-600">Available during business hours</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">Chat with our support team in real-time for quick questions and immediate assistance.</p>
+                    <button class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-comment-dots mr-2"></i>Start Live Chat
+                    </button>
+                </div>
+                
+                <div class="contact-card bg-white rounded-xl p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-book text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Knowledge Base</h3>
+                            <p class="text-gray-600">Self-service resources</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">Browse our comprehensive documentation and frequently asked questions for instant answers.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        <i class="fas fa-book-open mr-2"></i>Visit Knowledge Base
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Polymer World</h3>
+                    <p class="text-gray-400 mb-4">Your trusted B2B marketplace for premium polymer products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="hover:text-white">Products</a></li>
+                        <li><a href="supplier-search.html" class="hover:text-white">Suppliers</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>info@onlypolymer.com</li>
+                        <li><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>123 Business Ave, Suite 100</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Polymer World. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const submitLoading = document.getElementById('submit-loading');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitText.classList.add('hidden');
+            submitLoading.classList.remove('hidden');
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Hide loading state
+            submitText.classList.remove('hidden');
+            submitLoading.classList.add('hidden');
+            submitBtn.disabled = false;
+            
+            // Show success message
+            alert('Thank you for your message! We will get back to you within 24 hours.');
+            contactForm.reset();
+        });
+
+        // Form validation
+        const formInputs = document.querySelectorAll('.form-input');
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.style.borderColor = '#ef4444';
+                } else {
+                    input.style.borderColor = '#e5e7eb';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

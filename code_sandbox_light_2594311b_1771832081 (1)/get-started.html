@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - Polymer World</title>
+    <meta name="description" content="Join Polymer World today and get access to premium polymer products, trusted suppliers, and exclusive marketplace features.">
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .step-card {
+            transition: all 0.3s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .submit-btn {
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .plan-card {
+            transition: all 0.3s ease;
+        }
+        .plan-card:hover, .plan-card.selected {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        .plan-card.selected {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .checkbox-custom {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+        }
+        .checkbox-custom:checked {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+        }
+        .checkbox-custom:checked::after {
+            content: '✓';
+            color: white;
+            display: block;
+            text-align: center;
+            line-height: 1.1;
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <img src="images/polymer-world-logo.png" alt="Polymer World" class="h-8 w-auto">
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="products.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Products</a>
+                        <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Suppliers</a>
+                        <a href="about.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="contact.html" class="text-gray-500 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="signin.html" class="text-blue-600 hover:text-blue-700 px-3 py-2 text-sm font-medium">Sign In</a>
+                    <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Get Started</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600" id="mobile-menu-btn">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="index.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Home</a>
+                    <a href="products.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Products</a>
+                    <a href="supplier-search.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Suppliers</a>
+                    <a href="about.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">About</a>
+                    <a href="contact.html" class="text-gray-500 hover:text-blue-600 block px-3 py-2 text-base font-medium">Contact</a>
+                    <div class="border-t border-gray-200 pt-4 mt-4">
+                        <a href="signin.html" class="text-blue-600 hover:text-blue-700 block px-3 py-2 text-base font-medium">Sign In</a>
+                        <a href="get-started.html" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-base font-medium inline-block">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Get Started Today</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                Join Polymer World and unlock access to premium polymer products, trusted suppliers, and exclusive marketplace features.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToForm()" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Create Account
+                </button>
+                <a href="signin.html" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                    Already have an account? Sign In
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Bar -->
+    <div class="bg-white border-b border-gray-200 sticky top-16 z-40">
+        <div class="max-w-3xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700">Registration Progress</span>
+                <span id="progress-text" class="text-sm font-medium text-gray-700">Step 1 of 3</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div id="progress-bar" class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 33%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Getting started with Polymer World is quick and easy</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="step-card bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 text-center">
+                    <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-blue-600 font-bold text-xl">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Create Account</h3>
+                    <p class="text-gray-600">Fill out our simple registration form with your basic information and business details.</p>
+                </div>
+                
+                <div class="step-card bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 text-center">
+                    <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-green-600 font-bold text-xl">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Choose Plan</h3>
+                    <p class="text-gray-600">Select the membership plan that best fits your business needs and budget.</p>
+                </div>
+                
+                <div class="step-card bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-8 text-center">
+                    <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+                        <span class="text-purple-600 font-bold text-xl">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Start Trading</h3>
+                    <p class="text-gray-600">Access premium polymer products, connect with suppliers, and grow your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section id="registration-form" class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <!-- Step 1: Account Information -->
+                <div id="step-1" class="step-content">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Step 1: Account Information</h2>
+                        <p class="text-gray-600">Tell us about yourself and your business</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                        <input type="email" id="email" name="email" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="company" class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                        <input type="text" id="company" name="company" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="country" class="block text-sm font-medium text-gray-700 mb-2">Country *</label>
+                            <select id="country" name="country" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Select Country</option>
+                                <option value="US">United States</option>
+                                <option value="CA">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="DE">Germany</option>
+                                <option value="CN">China</option>
+                                <option value="IN">India</option>
+                                <option value="JP">Japan</option>
+                                <option value="SG">Singapore</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button onclick="nextStep(2)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                            Next Step →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Choose Plan -->
+                <div id="step-2" class="step-content hidden">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Step 2: Choose Your Plan</h2>
+                        <p class="text-gray-600">Select the membership that fits your needs</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="plan-card bg-white border-2 border-gray-200 rounded-xl p-6 cursor-pointer" onclick="selectPlan('starter')">
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Starter</h3>
+                                <div class="text-3xl font-bold text-blue-600 mb-1">$29</div>
+                                <div class="text-gray-600 text-sm">per month</div>
+                            </div>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Up to 50 products</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Basic analytics</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Email support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Mobile access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-card bg-white border-2 border-gray-200 rounded-xl p-6 cursor-pointer relative" onclick="selectPlan('professional')">
+                            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Popular</div>
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Professional</h3>
+                                <div class="text-3xl font-bold text-blue-600 mb-1">$79</div>
+                                <div class="text-gray-600 text-sm">per month</div>
+                            </div>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Up to 500 products</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Advanced analytics</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Priority support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>API access</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="plan-card bg-white border-2 border-gray-200 rounded-xl p-6 cursor-pointer" onclick="selectPlan('enterprise')">
+                            <div class="text-center mb-4">
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                                <div class="text-3xl font-bold text-blue-600 mb-1">$199</div>
+                                <div class="text-gray-600 text-sm">per month</div>
+                            </div>
+                            <ul class="space-y-3 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Unlimited products</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Custom analytics</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Dedicated support</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Custom integrations</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <input type="hidden" id="selectedPlan" name="selectedPlan" required>
+                    
+                    <div class="flex justify-between">
+                        <button onclick="prevStep(1)" class="border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-8 rounded-lg transition-colors">
+                            ← Previous
+                        </button>
+                        <button onclick="nextStep(3)" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                            Next Step →
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Additional Details -->
+                <div id="step-3" class="step-content hidden">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2">Step 3: Final Details</h2>
+                        <p class="text-gray-600">Complete your registration</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="businessType" class="block text-sm font-medium text-gray-700 mb-2">Business Type *</label>
+                        <select id="businessType" name="businessType" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            <option value="">Select Business Type</option>
+                            <option value="manufacturer">Manufacturer</option>
+                            <option value="distributor">Distributor</option>
+                            <option value="retailer">Retailer</option>
+                            <option value="end-user">End User</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="website" class="block text-sm font-medium text-gray-700 mb-2">Company Website</label>
+                        <input type="url" id="website" name="website" class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none" placeholder="https://www.example.com">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="employees" class="block text-sm font-medium text-gray-700 mb-2">Number of Employees *</label>
+                        <select id="employees" name="employees" required class="form-input w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none">
+                            <option value="">Select Range</option>
+                            <option value="1-10">1-10</option>
+                            <option value="11-50">11-50</option>
+                            <option value="51-200">51-200</option>
+                            <option value="201-500">201-500</option>
+                            <option value="500+">500+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <label class="flex items-start">
+                            <input type="checkbox" id="terms" name="terms" required class="checkbox-custom mr-3 mt-1">
+                            <span class="text-sm text-gray-600">
+                                I agree to the <a href="#" class="text-blue-600 hover:text-blue-700">Terms of Service</a> and <a href="#" class="text-blue-600 hover:text-blue-700">Privacy Policy</a> *
+                            </span>
+                        </label>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="flex items-start">
+                            <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-custom mr-3 mt-1">
+                            <span class="text-sm text-gray-600">I would like to receive updates and news from Polymer World</span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button onclick="prevStep(2)" class="border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold py-3 px-8 rounded-lg transition-colors">
+                            ← Previous
+                        </button>
+                        <button onclick="completeRegistration()" id="complete-btn" class="submit-btn bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300">
+                            <span id="complete-text">Complete Registration</span>
+                            <span id="complete-loading" class="hidden">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>Processing...
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">What You Get</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Unlock these benefits when you join Polymer World</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-globe text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Global Reach</h3>
+                    <p class="text-gray-600 text-sm">Connect with suppliers and buyers worldwide</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-green-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Market Insights</h3>
+                    <p class="text-gray-600 text-sm">Access real-time pricing and market trends</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-purple-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-handshake text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Trusted Network</h3>
+                    <p class="text-gray-600 text-sm">Verified suppliers and secure transactions</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="bg-orange-100 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-tools text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Advanced Tools</h3>
+                    <p class="text-gray-600 text-sm">Powerful features to streamline your business</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Members Say</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">Join thousands of satisfied customers</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">Operations Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Polymer World has transformed how we source polymer materials. The platform is intuitive and the supplier network is exceptional."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">Procurement Director</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The quality of suppliers on Polymer World is outstanding. We've found reliable partners that have helped grow our business significantly."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&q=80" alt="Customer" class="w-12 h-12 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">David Rodriguez</h4>
+                            <p class="text-gray-600 text-sm">Supply Chain Manager</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The advanced search and filtering capabilities make it easy to find exactly what we need. Highly recommended for any polymer business."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Polymer World</h3>
+                    <p class="text-gray-400 mb-4">Your trusted B2B marketplace for premium polymer products.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="products.html" class="hover:text-white">Products</a></li>
+                        <li><a href="supplier-search.html" class="hover:text-white">Suppliers</a></li>
+                        <li><a href="about.html" class="hover:text-white">About</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="hover:text-white">API Reference</a></li>
+                        <li><a href="#" class="hover:text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-envelope mr-2"></i>info@onlypolymer.com</li>
+                        <li><i class="fas fa-phone mr-2"></i>+1 (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>123 Business Ave, Suite 100</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Polymer World. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Step navigation
+        let currentStep = 1;
+        let selectedPlan = '';
+
+        function updateProgress() {
+            const progressBar = document.getElementById('progress-bar');
+            const progressText = document.getElementById('progress-text');
+            const percentage = (currentStep / 3) * 100;
+            
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = `Step ${currentStep} of 3`;
+        }
+
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            
+            // Show current step
+            document.getElementById(`step-${step}`).classList.remove('hidden');
+            currentStep = step;
+            updateProgress();
+        }
+
+        function nextStep(step) {
+            // Validate current step before proceeding
+            if (validateStep(currentStep)) {
+                showStep(step);
+            }
+        }
+
+        function prevStep(step) {
+            showStep(step);
+        }
+
+        function scrollToForm() {
+            document.getElementById('registration-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectPlan(plan) {
+            // Remove selected class from all plans
+            document.querySelectorAll('.plan-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked plan
+            event.currentTarget.classList.add('selected');
+            selectedPlan = plan;
+            document.getElementById('selectedPlan').value = plan;
+        }
+
+        function validateStep(step) {
+            let isValid = true;
+            const currentStepElement = document.getElementById(`step-${step}`);
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = '#ef4444';
+                    isValid = false;
+                } else {
+                    field.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            // Special validation for step 2 (plan selection)
+            if (step === 2 && !selectedPlan) {
+                alert('Please select a membership plan');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+
+        async function completeRegistration() {
+            if (!validateStep(3)) {
+                return;
+            }
+            
+            const completeBtn = document.getElementById('complete-btn');
+            const completeText = document.getElementById('complete-text');
+            const completeLoading = document.getElementById('complete-loading');
+            
+            // Show loading state
+            completeText.classList.add('hidden');
+            completeLoading.classList.remove('hidden');
+            completeBtn.disabled = true;
+            
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            
+            // Hide loading state
+            completeText.classList.remove('hidden');
+            completeLoading.classList.add('hidden');
+            completeBtn.disabled = false;
+            
+            // Show success message
+            alert(`Welcome to Polymer World! Your ${selectedPlan} account has been created successfully. Please check your email to verify your account.`);
+            
+            // Redirect to sign in page
+            window.location.href = 'signin.html';
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
